@@ -1,12 +1,56 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
-body {
-  @apply bg-neutral-950 text-neutral-100 antialiased;
-  min-height: 100dvh;
+@theme {
+  --font-family-mono: var(--font-mono);
+
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-light: var(--color-bg-light);
+  --color-bg-surface: var(--color-bg-surface);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-inverse: var(--color-text-inverse);
+  --color-text-muted: var(--color-text-muted);
+  --color-border-dark: var(--color-border-dark);
+  --color-border-light: var(--color-border-light);
+  --color-accent: var(--color-accent);
 }
 
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
+/* === Base styles === */
+body {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Reveal animation base === */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition:
+    opacity var(--duration-reveal) var(--ease-out-expo),
+    transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Utility: label text === */
+.label-text {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+/* === Utility: page title === */
+.page-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--tracking-wide);
 }
