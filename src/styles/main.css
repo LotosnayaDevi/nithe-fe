@@ -48,6 +48,52 @@ body {
   text-transform: uppercase;
 }
 
+/* === Search overlay animation === */
+.search-overlay-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-overlay-hidden .search-bar {
+  transform: translateY(-100%);
+}
+
+#search-overlay {
+  transition: opacity var(--duration-normal) var(--ease-out-expo);
+}
+
+#search-overlay .search-bar {
+  transition: transform var(--duration-slow) var(--ease-out-expo);
+}
+
+#search-overlay:not(.search-overlay-hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#search-overlay:not(.search-overlay-hidden) .search-bar {
+  transform: translateY(0);
+}
+
+/* === Dropdown panels === */
+.dropdown-panel {
+  transition: opacity var(--duration-fast) var(--ease-out-expo),
+              transform var(--duration-fast) var(--ease-out-expo);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+}
+
+.dropdown-panel button:hover,
+.dropdown-panel label:hover {
+  background-color: var(--color-bg-light);
+}
+
 /* === Utility: page title === */
 .page-title {
   font-size: var(--font-size-xl);

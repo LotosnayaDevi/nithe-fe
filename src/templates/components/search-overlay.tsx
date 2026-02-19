@@ -8,7 +8,7 @@ function SearchIcon() {
 
 function CloseIcon() {
   return (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
     </svg>
   );
@@ -18,26 +18,30 @@ export function SearchOverlay() {
   return (
     <div
       id="search-overlay"
-      className="fixed hidden"
+      className="fixed search-overlay-hidden"
       style="inset: 0; z-index: 60; background-color: rgba(0, 0, 0, 0.85);"
     >
       {/* Search bar */}
-      <div style="background-color: var(--color-bg-surface); padding: var(--space-6) var(--page-padding);">
-        <div className="flex items-center" style="max-width: var(--max-width); margin: 0 auto; gap: var(--space-4);">
-          <span style="color: var(--color-text-muted); flex-shrink: 0;">
-            <SearchIcon />
-          </span>
+      <div className="search-bar" style="background-color: var(--color-bg-surface); border-bottom: 1px solid var(--color-border-light);">
+        <div className="flex items-center" style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-4) var(--page-padding); gap: var(--space-4);">
           <input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search"
             style="flex: 1; border: none; outline: none; font-size: var(--font-size-base); font-family: var(--font-mono); background: transparent; color: var(--color-text-primary);"
             id="search-input"
           />
           <button
+            className="transition-opacity hover:opacity-70"
+            style="color: var(--color-text-primary); flex-shrink: 0; background: none; border: none; cursor: pointer;"
+            aria-label="Submit search"
+          >
+            <SearchIcon />
+          </button>
+          <button
             data-search-close
             aria-label="Close search"
             className="transition-opacity hover:opacity-70"
-            style="color: var(--color-text-muted); flex-shrink: 0; background: none; border: none; cursor: pointer;"
+            style="color: var(--color-text-primary); flex-shrink: 0; background: none; border: none; cursor: pointer;"
           >
             <CloseIcon />
           </button>
@@ -45,21 +49,20 @@ export function SearchOverlay() {
       </div>
 
       {/* Results area */}
-      <div style="background-color: var(--color-bg-light); padding: var(--space-12) var(--page-padding); overflow-y: auto; max-height: calc(100vh - 5rem);">
-        <div style="max-width: var(--max-width); margin: 0 auto;">
-          <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-6); letter-spacing: var(--tracking-wide);">
-            Popular searches
-          </p>
-          <div className="flex flex-wrap" style="gap: var(--space-3);">
-            {["Corsets", "Leather dresses", "Crop tops", "Harnesses", "New arrivals"].map((term) => (
-              <a
-                href={`/pages/catalog?q=${encodeURIComponent(term.toLowerCase())}`}
-                style="font-size: var(--font-size-sm); color: var(--color-text-primary); padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-full);"
-                className="transition-colors hover:border-current"
-              >
-                {term}
-              </a>
-            ))}
+      <div className="search-results" style="overflow-y: auto; max-height: calc(100vh - 4rem);">
+        <div style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-6) var(--page-padding);">
+          <div style="background-color: var(--color-bg-light); border-radius: var(--radius-sm); padding: var(--space-6);">
+            <div className="flex flex-wrap" style="gap: var(--space-3);">
+              {["Corsets", "Leather dresses", "Crop tops", "Harnesses", "New arrivals"].map((term) => (
+                <a
+                  href={`/pages/catalog?q=${encodeURIComponent(term.toLowerCase())}`}
+                  style="font-size: var(--font-size-sm); color: var(--color-text-primary); padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-full); background-color: var(--color-bg-surface);"
+                  className="transition-colors hover:border-current"
+                >
+                  {term}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

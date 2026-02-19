@@ -43,14 +43,14 @@ function CartItemRow({ item }: { item: CartItem }) {
         </div>
       </div>
 
-      {/* Quantity */}
-      <div style="flex: 1;">
-        <QtyStepper value={item.qty} />
+      {/* Total */}
+      <div style="flex: 1; font-size: var(--font-size-sm);">
+        {item.total}
       </div>
 
-      {/* Total */}
-      <div style="flex: 1; text-align: right; font-size: var(--font-size-sm);">
-        {item.total}
+      {/* Quantity */}
+      <div style="flex: 1; text-align: right;">
+        <QtyStepper value={item.qty} />
       </div>
     </div>
   );
@@ -84,8 +84,8 @@ export function renderCart(): string {
               style="padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border-light); font-size: var(--font-size-xs); color: var(--color-text-muted); letter-spacing: var(--tracking-wider); text-transform: uppercase;"
             >
               <div style="flex: 2;">Product</div>
-              <div style="flex: 1;">Quantity</div>
-              <div style="flex: 1; text-align: right;">Total</div>
+              <div style="flex: 1;">Total</div>
+              <div style="flex: 1; text-align: right;">Quantity</div>
             </div>
 
             {/* Cart items */}

@@ -12,12 +12,12 @@ export function renderAbout(): string {
           <article style="max-width: 48rem; margin: 0 auto; padding: var(--space-24) var(--page-padding);">
             <h1
               className="uppercase"
-              style="font-size: var(--font-size-xl); font-weight: var(--font-weight-light); letter-spacing: var(--tracking-widest); margin-bottom: var(--space-4);"
+              style="font-size: var(--font-size-xl); font-weight: var(--font-weight-light); letter-spacing: var(--tracking-widest); margin-bottom: var(--space-4); text-align: center;"
             >
               About the NYTHE
             </h1>
             <p
-              style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-12); letter-spacing: var(--tracking-wide);"
+              style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-12); letter-spacing: var(--tracking-wide); text-align: center;"
             >
               Our story
             </p>

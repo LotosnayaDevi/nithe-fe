@@ -4,10 +4,6 @@ import { Footer } from "../components/footer";
 
 const inputStyle = "border: 1px solid var(--color-border-light); padding: var(--space-3) var(--space-4); font-family: var(--font-mono); font-size: var(--font-size-sm); width: 100%;";
 
-function RequiredMark() {
-  return <span style="color: var(--color-accent);">*</span>;
-}
-
 export function renderContact(): string {
   return Page({
     title: "NYTHE — Contact",
@@ -27,47 +23,24 @@ export function renderContact(): string {
               {/* Name + Email row */}
               <div className="flex flex-col md:flex-row" style="gap: var(--space-4); margin-bottom: var(--space-6);">
                 <div style="flex: 1;">
-                  <label
-                    className="label-text"
-                    style="display: block; margin-bottom: var(--space-2); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider);"
-                  >
-                    Name <RequiredMark />
-                  </label>
-                  <input type="text" name="name" required style={inputStyle} />
+                  <input type="text" name="name" required placeholder="Name *" style={inputStyle} />
                 </div>
                 <div style="flex: 1;">
-                  <label
-                    className="label-text"
-                    style="display: block; margin-bottom: var(--space-2); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider);"
-                  >
-                    Email <RequiredMark />
-                  </label>
-                  <input type="email" name="email" required style={inputStyle} />
+                  <input type="email" name="email" required placeholder="Email *" style={inputStyle} />
                 </div>
               </div>
 
               {/* Phone */}
               <div style="margin-bottom: var(--space-6);">
-                <label
-                  className="label-text"
-                  style="display: block; margin-bottom: var(--space-2); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider);"
-                >
-                  Phone number <RequiredMark />
-                </label>
-                <input type="tel" name="phone" required style={inputStyle} />
+                <input type="tel" name="phone" required placeholder="Phone number *" style={inputStyle} />
               </div>
 
               {/* Comment */}
               <div style="margin-bottom: var(--space-8);">
-                <label
-                  className="label-text"
-                  style="display: block; margin-bottom: var(--space-2); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--tracking-wider);"
-                >
-                  Comment
-                </label>
                 <textarea
                   name="comment"
                   rows="5"
+                  placeholder="Comment"
                   style={`${inputStyle} resize: vertical;`}
                 />
               </div>

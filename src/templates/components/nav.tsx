@@ -8,6 +8,7 @@ const NAV_LINKS: NavLink[] = [
   { label: "Corsets", href: "/pages/catalog?category=corsets" },
   { label: "Dresses", href: "/pages/catalog?category=dresses" },
   { label: "Tops", href: "/pages/catalog?category=tops" },
+  { label: "About", href: "/pages/about" },
   { label: "Contact", href: "/pages/contact" },
 ];
 
@@ -53,9 +54,9 @@ export function Nav({ activePath }: NavProps) {
       className="fixed top-0 left-0 right-0 z-50 border-b"
       style="background-color: var(--color-bg-dark); border-color: var(--color-border-dark); height: var(--nav-height);"
     >
-      <nav className="flex items-center justify-between h-full" style="max-width: var(--max-width); margin: 0 auto; padding: 0 var(--page-padding);">
+      <nav className="relative flex items-center justify-between h-full" style="max-width: var(--max-width); margin: 0 auto; padding: 0 var(--page-padding);">
         {/* Logo */}
-        <a href="/" className="flex flex-col leading-none" style="color: var(--color-text-inverse);">
+        <a href="/" className="relative z-10 flex flex-col leading-none" style="color: var(--color-text-inverse);">
           <span
             className="uppercase"
             style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-widest);"
@@ -65,13 +66,16 @@ export function Nav({ activePath }: NavProps) {
           <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">/nai&theta;/</span>
         </a>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center" style="gap: var(--space-8);">
+        {/* Desktop nav links — absolutely centered */}
+        <div
+          className="hidden md:flex items-center justify-center absolute inset-0"
+          style="gap: var(--space-8); pointer-events: none;"
+        >
           {NAV_LINKS.map((link) => (
             <a
               href={link.href}
               className={`transition-colors hover:text-white ${activePath === link.href ? "text-white" : ""}`}
-              style={`font-size: var(--font-size-sm); color: ${activePath === link.href ? "var(--color-text-inverse)" : "var(--color-text-muted)"};`}
+              style={`font-size: var(--font-size-sm); pointer-events: auto; color: ${activePath === link.href ? "var(--color-text-inverse)" : "var(--color-text-muted)"};`}
               data-nav
             >
               {link.label}
@@ -80,17 +84,52 @@ export function Nav({ activePath }: NavProps) {
         </div>
 
         {/* Right section */}
-        <div className="flex items-center" style="gap: var(--space-4); color: var(--color-text-inverse);">
-          <span className="hidden lg:flex items-center" style="gap: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-muted);">
-            Ukraine <span style="color: var(--color-border-dark);">|</span> UAH &#x20b4;
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-            </svg>
-          </span>
+        <div className="relative z-10 flex items-center" style="gap: var(--space-4); color: var(--color-text-inverse);">
+          <div className="hidden lg:block relative">
+            <button
+              className="flex items-center cursor-pointer"
+              style="gap: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-muted); background: none; border: none;"
+              data-locale-toggle
+            >
+              Ukraine <span style="color: var(--color-border-dark);">|</span> UAH &#x20b4;
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+
+            {/* Locale dropdown panel */}
+            <div
+              className="dropdown-panel dropdown-hidden"
+              style="position: absolute; top: 100%; right: 0; margin-top: var(--space-2); min-width: 14rem; background-color: var(--color-bg-surface); border: 1px solid var(--color-border-light); box-shadow: 0 4px 12px rgba(0,0,0,0.08); z-index: 60; padding: var(--space-2) 0;"
+              data-locale-dropdown
+            >
+              <button
+                className="flex items-center w-full text-left cursor-pointer"
+                style="gap: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-primary); padding: var(--space-2) var(--space-4); background: none; border: none;"
+                data-locale-option="ua"
+              >
+                Ukraine / UAH &#x20b4;
+              </button>
+              <button
+                className="flex items-center w-full text-left cursor-pointer"
+                style="gap: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-primary); padding: var(--space-2) var(--space-4); background: none; border: none;"
+                data-locale-option="us"
+              >
+                United States / USD $
+              </button>
+              <button
+                className="flex items-center w-full text-left cursor-pointer"
+                style="gap: var(--space-2); font-size: var(--font-size-sm); color: var(--color-text-primary); padding: var(--space-2) var(--space-4); background: none; border: none;"
+                data-locale-option="eu"
+              >
+                Europe / EUR &euro;
+              </button>
+            </div>
+          </div>
           <a href="#" className="transition-opacity hover:opacity-70" aria-label="Search" data-search-toggle>
             <SearchIcon />
           </a>
-          <a href="/account" className="transition-opacity hover:opacity-70" aria-label="Account">
+          <a href="#" className="transition-opacity hover:opacity-70" aria-label="Account">
             <AccountIcon />
           </a>
           <a href="/pages/cart" className="transition-opacity hover:opacity-70" aria-label="Cart">

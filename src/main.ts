@@ -16,20 +16,20 @@ function initSearchOverlay(): void {
   document.querySelectorAll("[data-search-toggle]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      overlay?.classList.remove("hidden");
+      overlay?.classList.remove("search-overlay-hidden");
       input?.focus();
     });
   });
 
   document.querySelectorAll("[data-search-close]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      overlay?.classList.add("hidden");
+      overlay?.classList.add("search-overlay-hidden");
     });
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && overlay && !overlay.classList.contains("hidden")) {
-      overlay.classList.add("hidden");
+    if (e.key === "Escape" && overlay && !overlay.classList.contains("search-overlay-hidden")) {
+      overlay.classList.add("search-overlay-hidden");
     }
   });
 }
@@ -111,6 +111,50 @@ function initCarousels(): void {
   });
 }
 
+function initDropdowns(): void {
+  const pairs: { toggle: string; dropdown: string }[] = [
+    { toggle: "[data-filter-toggle]", dropdown: "[data-filter-dropdown]" },
+    { toggle: "[data-sort-toggle]", dropdown: "[data-sort-dropdown]" },
+    { toggle: "[data-locale-toggle]", dropdown: "[data-locale-dropdown]" },
+  ];
+
+  function closeAll(): void {
+    document.querySelectorAll(".dropdown-panel").forEach((panel) => {
+      panel.classList.add("dropdown-hidden");
+    });
+  }
+
+  pairs.forEach(({ toggle, dropdown }) => {
+    const toggleEl = document.querySelector(toggle);
+    const dropdownEl = document.querySelector(dropdown);
+    if (!toggleEl || !dropdownEl) return;
+
+    toggleEl.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isHidden = dropdownEl.classList.contains("dropdown-hidden");
+      closeAll();
+      if (isHidden) {
+        dropdownEl.classList.remove("dropdown-hidden");
+      }
+    });
+
+    // Prevent clicks inside the dropdown from closing it
+    dropdownEl.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  });
+
+  // Click outside closes all dropdowns
+  document.addEventListener("click", () => {
+    closeAll();
+  });
+
+  // Escape key closes all dropdowns
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initRevealAnimations();
   initNavToggle();
@@ -118,4 +162,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initQtySteppers();
   initSizeSelectors();
   initCarousels();
+  initDropdowns();
 });
