@@ -12,7 +12,7 @@ export function ImageCarousel({ imageCount, activeIndex }: ImageCarouselProps) {
       {/* Image area */}
       <div
         className="overflow-hidden woocommerce-product-gallery__wrapper"
-        style="aspect-ratio: 4/5; background-color: var(--color-bg-light);"
+        style="aspect-ratio: 5/6; background-color: var(--color-bg-light);"
       >
         <div
           className="w-full h-full woocommerce-product-gallery__image"

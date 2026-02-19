@@ -15,7 +15,6 @@ export function renderProduct(): string {
             variant="full"
             code="JC-09"
             name="Corset JC-09"
-            brand="NYTHE STUDIO"
             price="₴20,774.00"
             currency="UAH"
             imageCount={4}

@@ -140,13 +140,13 @@ export function renderCart(): string {
                     </p>
                     <a
                       href="/pages/checkout"
-                      style="display: inline-block; width: 100%; max-width: 320px; padding: var(--space-4); background-color: var(--color-bg-dark); color: var(--color-text-inverse); text-align: center; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-wider); text-decoration: none; text-transform: uppercase;"
+                      style="display: block; width: 420px; max-width: 100%; margin-left: auto; padding: var(--space-4); background-color: var(--color-bg-dark); color: var(--color-text-inverse); text-align: center; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-wider); text-decoration: none; text-transform: uppercase;"
                     >
                       Check out
                     </a>
-                    <div className="flex items-center justify-end" style="gap: var(--space-3); margin-top: var(--space-4);">
+                    <div className="flex items-center" style="gap: var(--space-3); margin-top: var(--space-4); width: 420px; max-width: 100%; margin-left: auto;">
                       <button
-                        style="flex: 1; max-width: 160px; padding: 14px 24px; background-color: #fff; border: 2px solid #000; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 2px; height: 56px;"
+                        style="flex: 1; padding: 14px 24px; background-color: #fff; border: 2px solid #000; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 2px; height: 56px;"
                       >
                         <svg viewBox="0 0 165.52 68" width="58" height="24">
                           <path d="M150.7 0H14.82A14.83 14.83 0 000 14.82v38.36A14.83 14.83 0 0014.82 68H150.7a14.83 14.83 0 0014.82-14.82V14.82A14.83 14.83 0 00150.7 0" fill="transparent"/>
@@ -159,7 +159,7 @@ export function renderCart(): string {
                         </svg>
                       </button>
                       <button
-                        style="flex: 1; max-width: 160px; padding: 14px 24px; background-color: #fff; border: 2px solid #aaa; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 2px; height: 56px;"
+                        style="flex: 1; padding: 14px 24px; background-color: #fff; border: 2px solid #aaa; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 2px; height: 56px;"
                       >
                         <svg viewBox="0 0 150 60" width="62" height="24">
                           <path d="M65.68 28.77V9.48h8.46a7.3 7.3 0 015.18 1.86 6.22 6.22 0 012 4.7 6.28 6.28 0 01-2 4.73 7.27 7.27 0 01-5.18 1.88h-5.27v6.12zm3.19-8.87h5.31a4 4 0 002.9-1.09 3.63 3.63 0 001.13-2.73 3.58 3.58 0 00-1.13-2.7 4.04 4.04 0 00-2.9-1.09h-5.31z" fill="#5F6368"/>
