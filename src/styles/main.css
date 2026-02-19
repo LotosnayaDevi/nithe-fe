@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-neutral-950 text-neutral-100 antialiased;
+  min-height: 100dvh;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
