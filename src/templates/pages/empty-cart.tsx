@@ -9,8 +9,8 @@ export function renderEmptyCart(): string {
     children: (
       <>
         <Nav activePath="/cart" />
-        <main style="padding-top: var(--nav-height); min-height: 100vh;">
-          <div style="text-align: center; padding: 120px var(--page-padding) 160px;">
+        <main style="padding-top: var(--nav-height); flex: 1; background-color: var(--color-bg-light, #F7F7F7);">
+          <div style="text-align: center; padding: 80px var(--page-padding) 120px;">
             <h1
               style="font-size: var(--font-size-xl); font-weight: var(--font-weight-light); letter-spacing: var(--tracking-wide); margin-bottom: var(--space-8);"
             >

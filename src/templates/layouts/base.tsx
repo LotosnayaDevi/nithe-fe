@@ -20,7 +20,7 @@ export function Base({ title, children, bodyClass, pageScript }: BaseProps) {
         <link rel="stylesheet" href="/assets/styles.css" />
         <title>{title}</title>
       </head>
-      <body className={bodyClass ?? ""}>
+      <body className={bodyClass ?? ""} style="display: flex; flex-direction: column; min-height: 100vh;">
         {children}
         <SearchOverlay />
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

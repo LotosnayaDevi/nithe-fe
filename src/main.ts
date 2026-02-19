@@ -56,6 +56,16 @@ function recalcCart(): void {
   });
 
   totalEl.textContent = formatPrice(grandTotal);
+
+  // If all quantities are 0, reload as empty cart
+  const allZero = Array.from(rows).every((row) => {
+    const qtyInput = row.querySelector("input.qty") as HTMLInputElement | null;
+    return parseInt(qtyInput?.value || "0", 10) === 0;
+  });
+  if (allZero) {
+    localStorage.setItem("nythe_cart_count", "0");
+    window.location.href = "/pages/empty-cart";
+  }
 }
 
 function initQtySteppers(): void {
