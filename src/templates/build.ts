@@ -48,6 +48,8 @@ cpSync(join(ASSETS_SRC, "logo.png"), join(DIST, "assets", "images", "logo.png"))
 cpSync(join(ASSETS_SRC, "video frame.png"), join(DIST, "assets", "images", "video-frame.png"));
 cpSync(join(ASSETS_SRC, "additional shape.png"), join(DIST, "assets", "images", "additional-shape.png"));
 cpSync(join(ASSETS_SRC, "Smoke.png"), join(DIST, "assets", "images", "smoke.png"));
+cpSync(join(ASSETS_SRC, "Apple logo.png"), join(DIST, "assets", "images", "apple-logo.png"));
+cpSync(join(ASSETS_SRC, "Android logo.png"), join(DIST, "assets", "images", "android-logo.png"));
 
 for (const page of pages) {
   const filePath = join(DIST, page.path);
