@@ -46,6 +46,7 @@ function HamburgerIcon() {
 
 export interface NavProps {
   activePath?: string;
+  cartCount?: number;
 }
 
 function isLinkActive(activePath: string | undefined, linkHref: string): boolean {
@@ -58,28 +59,22 @@ function isLinkActive(activePath: string | undefined, linkHref: string): boolean
   return linkBase.endsWith(activePath);
 }
 
-export function Nav({ activePath }: NavProps) {
+export function Nav({ activePath, cartCount = 0 }: NavProps) {
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 border-b"
-      style="background-color: var(--color-bg-dark); border-color: var(--color-border-dark); height: var(--nav-height);"
+      style="background-color: var(--color-bg-dark); border-color: var(--color-border-dark);"
     >
-      <nav className="relative flex items-center justify-between h-full" style="max-width: var(--max-width); margin: 0 auto; padding: 0 var(--page-padding);">
+      <nav className="relative flex items-center justify-between" style="padding: 24px 60px;">
         {/* Logo */}
-        <a href="/" className="relative z-10 flex flex-col leading-none" style="color: var(--color-text-inverse);">
-          <span
-            className="uppercase"
-            style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-widest);"
-          >
-            NYTHE
-          </span>
-          <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">/nai&theta;/</span>
+        <a href="/" className="relative z-10">
+          <img src="/assets/images/logo.png" alt="NYTHE" style="height: 44px; width: auto;" />
         </a>
 
         {/* Desktop nav links — absolutely centered */}
         <div
           className="hidden md:flex items-center justify-center absolute inset-0"
-          style="gap: 44px; pointer-events: none;"
+          style="gap: 36px; pointer-events: none;"
         >
           {NAV_LINKS.map((link) => {
             const isActive = isLinkActive(activePath, link.href);
@@ -95,7 +90,7 @@ export function Nav({ activePath }: NavProps) {
                   <img
                     src="/assets/images/underline.png"
                     alt=""
-                    style="position: absolute; bottom: -6px; left: -1px; width: calc(100% + 2px); height: auto; pointer-events: none;"
+                    style="position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: calc(100% + 8px); height: auto; pointer-events: none;"
                   />
                 )}
               </a>
@@ -156,9 +151,9 @@ export function Nav({ activePath }: NavProps) {
             <CartIcon />
             <span
               className="cart-contents-count"
-              style="position: absolute; top: -6px; right: -8px; font-size: 0.625rem; background-color: var(--color-accent); color: var(--color-text-inverse); width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1;"
+              style={`position: absolute; top: -6px; right: -8px; font-size: 0.625rem; background-color: var(--color-accent); color: var(--color-text-inverse); width: 16px; height: 16px; border-radius: 50%; display: ${cartCount > 0 ? "flex" : "none"}; align-items: center; justify-content: center; line-height: 1;`}
             >
-              0
+              {String(cartCount)}
             </span>
           </a>
           <button

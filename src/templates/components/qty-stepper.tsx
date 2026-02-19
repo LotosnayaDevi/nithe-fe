@@ -24,7 +24,7 @@ export function QtyStepper({ value, label }: QtyStepperProps) {
           className="qty"
           name="quantity"
           value={String(value ?? 1)}
-          min="1"
+          min="0"
           style="width: 2.75rem; height: 2.75rem; text-align: center; font-size: var(--font-size-sm); border: none; background: transparent; -moz-appearance: textfield; font-family: var(--font-mono);"
           data-qty-value
         />

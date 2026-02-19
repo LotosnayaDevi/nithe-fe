@@ -10,6 +10,7 @@ import { renderCheckout } from "./pages/checkout";
 import { renderContact } from "./pages/contact";
 import { renderAbout } from "./pages/about";
 import { renderPrivacy, renderTerms, renderRefund, renderShipping } from "./pages/legal";
+import { renderEmptyCart } from "./pages/empty-cart";
 
 const DIST = join(import.meta.dir, "..", "..", "dist");
 
@@ -31,6 +32,7 @@ const pages: PageDef[] = [
   { path: "pages/terms.html", render: renderTerms },
   { path: "pages/refund.html", render: renderRefund },
   { path: "pages/shipping.html", render: renderShipping },
+  { path: "pages/empty-cart.html", render: renderEmptyCart },
 ];
 
 // Ensure dist dirs exist
@@ -41,6 +43,11 @@ mkdirSync(join(DIST, "assets", "images"), { recursive: true });
 const ASSETS_SRC = join(import.meta.dir, "..", "..", "assets", "imgs");
 cpSync(join(ASSETS_SRC, "HERO.png"), join(DIST, "assets", "images", "hero.png"));
 cpSync(join(ASSETS_SRC, "underline.png"), join(DIST, "assets", "images", "underline.png"));
+cpSync(join(ASSETS_SRC, "LOGO rova.png"), join(DIST, "assets", "images", "logo-rova.png"));
+cpSync(join(ASSETS_SRC, "logo.png"), join(DIST, "assets", "images", "logo.png"));
+cpSync(join(ASSETS_SRC, "video frame.png"), join(DIST, "assets", "images", "video-frame.png"));
+cpSync(join(ASSETS_SRC, "additional shape.png"), join(DIST, "assets", "images", "additional-shape.png"));
+cpSync(join(ASSETS_SRC, "Smoke.png"), join(DIST, "assets", "images", "smoke.png"));
 
 for (const page of pages) {
   const filePath = join(DIST, page.path);

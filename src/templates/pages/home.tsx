@@ -32,7 +32,7 @@ export function renderHome(): string {
     children: (
       <>
         <Nav activePath="/" />
-        <main style="padding-top: var(--nav-height); min-height: 100vh;">
+        <main style="padding-top: var(--nav-height); min-height: 100vh; overflow-x: clip;">
 
           {/* ── Hero ── */}
           <section
@@ -40,24 +40,8 @@ export function renderHome(): string {
             style="height: 90vh; background: url('/assets/images/hero.png') center/cover no-repeat;"
           />
 
-          {/* ── Best Sellers — Row 1 ── */}
-          <section style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-16) var(--page-padding);">
-            <div className="flex items-baseline justify-between" style="margin-bottom: var(--space-8);">
-              <h2
-                data-reveal
-                className="uppercase"
-                style="font-size: var(--font-size-sm); font-weight: var(--font-weight-regular); letter-spacing: var(--tracking-widest);"
-              >
-                Best Sell
-              </h2>
-              <a
-                href="/pages/catalog"
-                style="font-size: var(--font-size-sm); color: var(--color-text-muted); text-decoration: underline;"
-                className="transition-opacity hover:opacity-70"
-              >
-                View all
-              </a>
-            </div>
+          {/* ── Product Cards — Row 1 ── */}
+          <section style="padding: var(--space-16) 40px;">
             <ProductGrid>
               {BEST_SELLERS_1.map((p) => (
                 <ProductCard variant="grid" {...p} href="/pages/product-info" />
@@ -65,63 +49,8 @@ export function renderHome(): string {
             </ProductGrid>
           </section>
 
-          {/* ── Featured Section ── */}
-          <section style="padding: 0 var(--page-padding);">
-            <div
-              className="relative grid grid-cols-1 md:grid-cols-2 overflow-hidden"
-              style="max-width: var(--max-width); margin: 0 auto; min-height: 500px;"
-            >
-              {/* Left — model image with geometric clip */}
-              <div
-                data-reveal
-                className="relative"
-                style="min-height: 400px;"
-              >
-                <div
-                  style="position: absolute; inset: 0; background: linear-gradient(180deg, #555 0%, #999 100%); clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);"
-                />
-              </div>
-
-              {/* Right — text over smoke/ink background */}
-              <div
-                className="flex flex-col justify-center"
-                style="padding: var(--space-12); background: radial-gradient(ellipse at 30% 50%, rgba(80,80,80,0.3) 0%, transparent 70%), linear-gradient(180deg, #f8f8f8 0%, #e0e0e0 100%);"
-              >
-                <span
-                  data-reveal
-                  className="uppercase"
-                  style="font-size: var(--font-size-xs); letter-spacing: var(--tracking-widest); color: var(--color-text-muted); display: block; margin-bottom: var(--space-4);"
-                >
-                  Featured in this video
-                </span>
-                <h2
-                  data-reveal
-                  style="font-size: var(--font-size-xl); font-weight: var(--font-weight-light); letter-spacing: var(--tracking-wide); margin-bottom: var(--space-4);"
-                >
-                  &rsaquo; BT-02 Dress
-                </h2>
-              </div>
-            </div>
-          </section>
-
-          {/* ── Best Sellers — Row 2 ── */}
-          <section style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-16) var(--page-padding);">
-            <div className="flex items-baseline justify-between" style="margin-bottom: var(--space-8);">
-              <h2
-                data-reveal
-                className="uppercase"
-                style="font-size: var(--font-size-sm); font-weight: var(--font-weight-regular); letter-spacing: var(--tracking-widest);"
-              >
-                Best Sell
-              </h2>
-              <a
-                href="/pages/catalog"
-                style="font-size: var(--font-size-sm); color: var(--color-text-muted); text-decoration: underline;"
-                className="transition-opacity hover:opacity-70"
-              >
-                View all
-              </a>
-            </div>
+          {/* ── Product Cards — Row 2 ── */}
+          <section style="padding: 0 40px var(--space-16);">
             <ProductGrid>
               {BEST_SELLERS_2.map((p) => (
                 <ProductCard variant="grid" {...p} href="/pages/product-info" />
@@ -129,24 +58,83 @@ export function renderHome(): string {
             </ProductGrid>
           </section>
 
-          {/* ── New Arrivals Grid ── */}
-          <section style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-16) var(--page-padding);">
-            <ProductGrid>
+          {/* ── Featured / Video Promotion Section ── */}
+          <section className="relative" style="overflow: visible; height: 700px;">
+            {/* Smoke — full section background */}
+            <img
+              src="/assets/images/smoke.png"
+              alt=""
+              style="position: absolute; bottom: 0; left: 0; width: 1600px; height: auto; max-width: none; pointer-events: none; mix-blend-mode: multiply; z-index: 1;"
+            />
+
+            <div
+              className="relative"
+              style="max-width: var(--max-width); margin: 0 auto; height: 100%; padding: 0 var(--page-padding);"
+            >
+              {/* Additional geometric shape — behind, overlapping right & lower */}
+              <img
+                data-reveal
+                src="/assets/images/additional-shape.png"
+                alt=""
+                style="position: absolute; top: 8%; left: 4%; width: 55%; height: auto; z-index: 2; pointer-events: none;"
+              />
+
+              {/* Main geometric frame (left, in front) */}
+              <div
+                data-reveal
+                className="relative"
+                style="position: absolute; top: 0; left: var(--page-padding); width: 38%; height: 98%; z-index: 3;"
+              >
+                <img
+                  src="/assets/images/video-frame.png"
+                  alt=""
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;"
+                />
+              </div>
+
+              {/* Text content — top right area */}
+              <div
+                style="position: absolute; top: 8%; right: 10%; z-index: 5;"
+              >
+                <span
+                  data-reveal
+                  style="font-size: 32px; letter-spacing: 0.02em; color: #F7F7F7; display: block; margin-bottom: var(--space-6);"
+                >
+                  Featured in this video:
+                </span>
+                <p
+                  data-reveal
+                  style="font-size: 32px; font-weight: var(--font-weight-light); letter-spacing: 0.02em; color: #F7F7F7;"
+                >
+                  &mdash; RT-01 dress
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Product Cards — Row 3 + 4 (New Arrivals) ── */}
+          <section style="padding: var(--space-16) 40px;">
+            <div
+              id="products-grid"
+              className="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              style="gap: var(--grid-gap);"
+              data-reveal-stagger
+            >
               {NEW_ARRIVALS.map((p) => (
                 <ProductCard variant="grid" {...p} href="/pages/product-info" />
               ))}
-            </ProductGrid>
+            </div>
 
             {/* Show more button */}
             <div style="text-align: center; margin-top: var(--space-12);">
-              <a
-                href="/pages/catalog"
+              <button
+                data-show-more
                 data-reveal
-                style="display: inline-block; padding: var(--space-3) var(--space-12); background-color: var(--color-bg-dark); color: var(--color-text-inverse); font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); text-decoration: none;"
+                style="display: inline-block; padding: var(--space-3) var(--space-12); background-color: var(--color-bg-dark); color: var(--color-text-inverse); font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); border: none; cursor: pointer;"
                 className="transition-opacity hover:opacity-70"
               >
                 show more
-              </a>
+              </button>
             </div>
           </section>
 

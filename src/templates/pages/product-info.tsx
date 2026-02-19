@@ -16,11 +16,10 @@ export function renderProductInfo(): string {
             code="JC-09"
             price="₴20,809.00"
             imageCount={4}
-            attributes={["Work jacket", "Cotton canvas jacket", "Vintage wash processing", "100% Cotton"]}
+            attributes={[]}
             href="/pages/product"
           />
         </main>
-        <Footer />
       </>
     ),
   });

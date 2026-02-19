@@ -27,7 +27,7 @@ function GridCard({ code, price, originalPrice, href, imageAlt }: ProductCardPro
     <div className="group product type-product" data-reveal data-product-id="0">
       <div
         className="overflow-hidden woocommerce-product-gallery__image"
-        style="aspect-ratio: 3/4; background-color: var(--color-bg-light); margin-bottom: var(--space-4);"
+        style="aspect-ratio: 430/600; background-color: var(--color-bg-light); margin-bottom: var(--space-4);"
       >
         <div
           className="w-full h-full transition-transform group-hover:scale-[1.02]"
@@ -38,14 +38,9 @@ function GridCard({ code, price, originalPrice, href, imageAlt }: ProductCardPro
       </div>
       <div className="flex items-baseline justify-between" style="gap: var(--space-4);">
         <span className="woocommerce-loop-product__title" style="font-size: var(--font-size-sm);">{code}</span>
-        <div className="flex items-baseline" style="gap: var(--space-2);">
-          {originalPrice && (
-            <span style="font-size: var(--font-size-sm); color: var(--color-accent); text-decoration: line-through;">
-              {originalPrice}
-            </span>
-          )}
-          <span className="price"><span className="woocommerce-Price-amount amount" style="font-size: var(--font-size-sm);">{price}</span></span>
-        </div>
+        <span className="price" style="font-size: var(--font-size-sm); color: var(--color-accent);">
+          <span className="woocommerce-Price-amount amount">{price}</span> UAH
+        </span>
       </div>
     </div>
   );
@@ -60,33 +55,62 @@ function GridCard({ code, price, originalPrice, href, imageAlt }: ProductCardPro
 
 function InfoCard({ code, price, originalPrice, attributes, href, imageCount }: ProductCardProps) {
   return (
-    <div className="product type-product" data-product-id="0" style="max-width: 42rem; margin: 0 auto; padding: var(--space-8) var(--page-padding);">
-      {/* Carousel with arrows at page edges */}
-      <div className="relative" style="margin: 0 calc(-1 * var(--page-padding));">
-        <div style="padding: 0 var(--page-padding);">
-          <ImageCarousel imageCount={imageCount ?? 4} activeIndex={0} />
+    <div className="product type-product" data-product-id="0" style="margin: 0 auto; padding: var(--space-8) var(--page-padding);">
+      {/* Carousel with arrows at viewport edges */}
+      <div className="relative" data-carousel>
+        <div className="flex items-center justify-center">
+          {/* Left arrow — viewport edge */}
+          <button
+            className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center transition-opacity hover:opacity-70"
+            style="width: 3rem; height: 3rem; cursor: pointer; background: none; border: none;"
+            data-carousel-prev
+            aria-label="Previous image"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+
+          {/* Image area — fixed 480x520 */}
+          <div
+            className="overflow-hidden woocommerce-product-gallery"
+            style="width: 480px; height: 520px;"
+          >
+            <div
+              className="w-full h-full woocommerce-product-gallery__image"
+              style="background: linear-gradient(180deg, #555 0%, #bbb 100%);"
+              data-carousel-slides
+            ></div>
+          </div>
+
+          {/* Right arrow — viewport edge */}
+          <button
+            className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center transition-opacity hover:opacity-70"
+            style="width: 3rem; height: 3rem; cursor: pointer; background: none; border: none;"
+            data-carousel-next
+            aria-label="Next image"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
         </div>
-        {/* Page-edge arrows — override carousel's built-in arrows */}
-        <button
-          className="absolute top-1/2 left-0 -translate-y-1/2 flex items-center justify-center transition-opacity hover:opacity-70"
-          style="width: 3rem; height: 3rem;"
-          data-carousel-prev
-          aria-label="Previous image"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
-        </button>
-        <button
-          className="absolute top-1/2 right-0 -translate-y-1/2 flex items-center justify-center transition-opacity hover:opacity-70"
-          style="width: 3rem; height: 3rem;"
-          data-carousel-next
-          aria-label="Next image"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
+
+        {/* Dot indicators */}
+        <div className="flex items-center justify-center" style="gap: var(--space-2); margin-top: var(--space-4);">
+          {Array.from({ length: imageCount ?? 4 }).map((_, i) => (
+            <button
+              className="rounded-full transition-colors"
+              style={`width: 0.5rem; height: 0.5rem; cursor: pointer; border: none; ${
+                i === 0
+                  ? "background-color: var(--color-text-primary);"
+                  : "background-color: var(--color-border-light);"
+              }`}
+              data-carousel-dot={String(i)}
+              aria-label={`Go to image ${i + 1}`}
+            ></button>
+          ))}
+        </div>
       </div>
 
       {/* Product info — centered */}

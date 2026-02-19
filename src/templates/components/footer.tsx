@@ -34,11 +34,21 @@ export function Footer() {
     <footer style="background-color: var(--color-bg-dark); color: var(--color-text-inverse); margin-top: auto;">
       <div style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-16) var(--page-padding); text-align: center;">
 
-        {/* Social icons */}
-        <div className="flex items-center justify-center" style="gap: var(--space-6); margin-bottom: var(--space-8);">
+        {/* Social icons + MADE BY */}
+        <div className="flex items-center justify-center relative" style="gap: var(--space-6); margin-bottom: var(--space-8);">
           <a href="#" className="transition-opacity hover:opacity-70" aria-label="Telegram"><TelegramIcon /></a>
           <a href="#" className="transition-opacity hover:opacity-70" aria-label="TikTok"><TikTokIcon /></a>
           <a href="#" className="transition-opacity hover:opacity-70" aria-label="Instagram"><InstagramIcon /></a>
+
+          <div
+            className="hidden md:flex items-center absolute right-0"
+            style="gap: var(--space-3);"
+          >
+            <span style="font-size: 32px; letter-spacing: 0; color: var(--color-text-inverse);">
+              MADE BY
+            </span>
+            <img src="/assets/images/logo-rova.png" alt="ROVA" style="height: 36px; width: auto;" />
+          </div>
         </div>
 
         {/* Email */}

@@ -25,7 +25,7 @@ export function renderCatalog(): string {
       <>
         <Nav activePath="/catalog" />
         <main style="padding-top: var(--nav-height); min-height: 100vh;">
-          <div style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-8) var(--page-padding);">
+          <div style="padding: var(--space-8) 40px;">
             <FilterBar productCount={SAMPLE_PRODUCTS.length} />
             <ProductGrid>
               {SAMPLE_PRODUCTS.map((p) => (

@@ -49,7 +49,7 @@
 
   /* === Layout === */
   --max-width: 80rem;
-  --nav-height: 5rem;
+  --nav-height: 94px;
   --grid-gap: var(--space-6);
   --page-padding: var(--space-6);
 
