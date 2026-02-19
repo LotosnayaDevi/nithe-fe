@@ -36,20 +36,9 @@ export function renderHome(): string {
 
           {/* ── Hero ── */}
           <section
-            className="relative flex items-end"
-            style="height: 90vh; background: url('/assets/images/hero-texture.jpg') center/cover no-repeat, linear-gradient(135deg, #d4d0c8 0%, #e8e4dc 40%, #f5f2ec 100%); padding: var(--space-16) var(--page-padding);"
-          >
-            <div
-              data-reveal
-              style="max-width: var(--max-width); margin: 0 auto; width: 100%;"
-            >
-              <h1
-                style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: var(--font-weight-light); letter-spacing: 0.02em; line-height: 1.1; color: var(--color-text-primary); text-align: right;"
-              >
-                Beautifully<br />Wrong.
-              </h1>
-            </div>
-          </section>
+            data-reveal
+            style="height: 90vh; background: url('/assets/images/hero.png') center/cover no-repeat;"
+          />
 
           {/* ── Best Sellers — Row 1 ── */}
           <section style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-16) var(--page-padding);">
@@ -138,18 +127,6 @@ export function renderHome(): string {
                 <ProductCard variant="grid" {...p} href="/pages/product-info" />
               ))}
             </ProductGrid>
-
-            {/* Show more button */}
-            <div style="text-align: center; margin-top: var(--space-12);">
-              <a
-                href="/pages/catalog"
-                data-reveal
-                style="display: inline-block; padding: var(--space-3) var(--space-12); background-color: var(--color-bg-dark); color: var(--color-text-inverse); font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); text-decoration: none; border-radius: var(--radius-full);"
-                className="transition-opacity hover:opacity-70"
-              >
-                Show more
-              </a>
-            </div>
           </section>
 
           {/* ── New Arrivals Grid ── */}
@@ -159,10 +136,22 @@ export function renderHome(): string {
                 <ProductCard variant="grid" {...p} href="/pages/product-info" />
               ))}
             </ProductGrid>
+
+            {/* Show more button */}
+            <div style="text-align: center; margin-top: var(--space-12);">
+              <a
+                href="/pages/catalog"
+                data-reveal
+                style="display: inline-block; padding: var(--space-3) var(--space-12); background-color: var(--color-bg-dark); color: var(--color-text-inverse); font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); text-decoration: none;"
+                className="transition-opacity hover:opacity-70"
+              >
+                show more
+              </a>
+            </div>
           </section>
 
           {/* ── Custom Made Section ── */}
-          <section style="background-color: var(--color-bg-light); padding: var(--space-24) var(--page-padding);">
+          <section style="background-color: #1A1A1A; color: var(--color-text-inverse); padding: var(--space-24) var(--page-padding);">
             <div
               data-reveal
               style="max-width: 40rem; margin: 0 auto; text-align: center;"
@@ -173,18 +162,23 @@ export function renderHome(): string {
                 Custom Made
               </h2>
               <p
-                style="font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.8; margin-bottom: var(--space-4);"
+                style="font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.8; margin-bottom: var(--space-6);"
               >
-                We work exclusively with vegetal leather and natural&nbsp;materials, crafting each piece by hand. From initial sketches to final stitching, every detail is guided by an obsession with form and&nbsp;feel.
+                Our custom-made corsets begin with measurements of your bust and waist, ensuring a fit that enhances your natural curves.
+              </p>
+              <p
+                style="font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.8; margin-bottom: var(--space-6);"
+              >
+                Choose from a variety of fabric colors to find the perfect hue that matches your style and mood.
               </p>
               <p
                 style="font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.8; margin-bottom: var(--space-8);"
               >
-                Made to measure. Made to last. Made in&nbsp;Ukraine.
+                Once we have your size and color preferences, we'll work closely with you to explore additional customization options. Whether it's selecting the silhouette, deciding on the length, or adding embellishments, every detail of your corset is tailored to your desires.
               </p>
               <a
                 href="/pages/contact"
-                style="display: inline-block; padding: var(--space-3) var(--space-12); border: 1px solid var(--color-text-primary); color: var(--color-text-primary); font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); text-decoration: none;"
+                style="display: inline-block; padding: var(--space-3) var(--space-12); border: 1px solid var(--color-text-inverse); color: var(--color-text-inverse); font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); text-decoration: none;"
                 className="transition-opacity hover:opacity-70"
               >
                 Contact us

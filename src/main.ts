@@ -220,6 +220,34 @@ function initAjaxCart(): void {
   });
 }
 
+function initActiveNav(): void {
+  const currentPath = window.location.pathname + window.location.search;
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("a[data-nav]");
+
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    const isActive = href === currentPath || href === window.location.pathname;
+
+    // Remove any server-rendered active state
+    link.classList.remove("text-white");
+    link.style.color = isActive ? "var(--color-text-inverse)" : "var(--color-text-muted)";
+
+    // Remove existing underline images
+    const existing = link.querySelector("img");
+    if (existing) existing.remove();
+
+    // Add underline to active tab
+    if (isActive) {
+      link.classList.add("text-white");
+      const img = document.createElement("img");
+      img.src = "/assets/images/underline.png";
+      img.alt = "";
+      img.style.cssText = "position: absolute; bottom: -6px; left: -1px; width: calc(100% + 2px); height: auto; pointer-events: none;";
+      link.appendChild(img);
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initRevealAnimations();
   initNavToggle();
@@ -229,4 +257,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initCarousels();
   initDropdowns();
   initAjaxCart();
+  initActiveNav();
 });

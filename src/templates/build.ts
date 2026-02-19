@@ -1,4 +1,4 @@
-import { mkdirSync } from "fs";
+import { mkdirSync, cpSync } from "fs";
 import { join } from "path";
 
 import { renderHome } from "./pages/home";
@@ -35,7 +35,12 @@ const pages: PageDef[] = [
 
 // Ensure dist dirs exist
 mkdirSync(join(DIST, "pages"), { recursive: true });
-mkdirSync(join(DIST, "assets"), { recursive: true });
+mkdirSync(join(DIST, "assets", "images"), { recursive: true });
+
+// Copy static images
+const ASSETS_SRC = join(import.meta.dir, "..", "..", "assets", "imgs");
+cpSync(join(ASSETS_SRC, "HERO.png"), join(DIST, "assets", "images", "hero.png"));
+cpSync(join(ASSETS_SRC, "underline.png"), join(DIST, "assets", "images", "underline.png"));
 
 for (const page of pages) {
   const filePath = join(DIST, page.path);

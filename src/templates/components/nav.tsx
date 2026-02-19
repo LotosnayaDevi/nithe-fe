@@ -48,6 +48,16 @@ export interface NavProps {
   activePath?: string;
 }
 
+function isLinkActive(activePath: string | undefined, linkHref: string): boolean {
+  if (!activePath) return false;
+  if (activePath === linkHref) return true;
+  if (activePath === "/" || linkHref === "/") return activePath === linkHref;
+  const linkBase = linkHref.split("?")[0];
+  // Skip query-param links — handled client-side
+  if (linkHref.includes("?")) return false;
+  return linkBase.endsWith(activePath);
+}
+
 export function Nav({ activePath }: NavProps) {
   return (
     <header
@@ -69,18 +79,28 @@ export function Nav({ activePath }: NavProps) {
         {/* Desktop nav links — absolutely centered */}
         <div
           className="hidden md:flex items-center justify-center absolute inset-0"
-          style="gap: var(--space-8); pointer-events: none;"
+          style="gap: 44px; pointer-events: none;"
         >
-          {NAV_LINKS.map((link) => (
-            <a
-              href={link.href}
-              className={`transition-colors hover:text-white ${activePath === link.href ? "text-white" : ""}`}
-              style={`font-size: var(--font-size-sm); pointer-events: auto; color: ${activePath === link.href ? "var(--color-text-inverse)" : "var(--color-text-muted)"};`}
-              data-nav
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = isLinkActive(activePath, link.href);
+            return (
+              <a
+                href={link.href}
+                className={`relative transition-colors hover:text-white ${isActive ? "text-white" : ""}`}
+                style={`font-size: var(--font-size-sm); pointer-events: auto; color: ${isActive ? "var(--color-text-inverse)" : "var(--color-text-muted)"};`}
+                data-nav
+              >
+                {link.label}
+                {isActive && (
+                  <img
+                    src="/assets/images/underline.png"
+                    alt=""
+                    style="position: absolute; bottom: -6px; left: -1px; width: calc(100% + 2px); height: auto; pointer-events: none;"
+                  />
+                )}
+              </a>
+            );
+          })}
         </div>
 
         {/* Right section */}
@@ -158,7 +178,7 @@ export function Nav({ activePath }: NavProps) {
           {NAV_LINKS.map((link) => (
             <a
               href={link.href}
-              style={`font-size: var(--font-size-sm); color: ${activePath === link.href ? "var(--color-text-inverse)" : "var(--color-text-muted)"};`}
+              style={`font-size: var(--font-size-sm); color: ${isLinkActive(activePath, link.href) ? "var(--color-text-inverse)" : "var(--color-text-muted)"};`}
             >
               {link.label}
             </a>
