@@ -7,6 +7,7 @@ const inputStyle = "border: 1px solid var(--color-border-light); padding: var(--
 export function renderContact(): string {
   return Page({
     title: "NYTHE — Contact",
+    bodyClass: "woocommerce page",
     children: (
       <>
         <Nav activePath="/contact" />

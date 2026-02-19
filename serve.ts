@@ -71,11 +71,90 @@ watch(SRC, { recursive: true }, () => {
   }, 200);
 });
 
+// --- Mock Cart API (dev only) ---
+
+interface CartItem {
+  product_id: string;
+  quantity: number;
+  size: string;
+  key: string;
+}
+
+const cart: CartItem[] = [];
+let nextKey = 1;
+
+const CORS_HEADERS: Record<string, string> = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+function jsonResponse(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), { status, headers: CORS_HEADERS });
+}
+
+function getCartCount() {
+  return cart.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+async function handleCartAPI(req: Request, pathname: string): Promise<Response | null> {
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: CORS_HEADERS });
+  }
+
+  if (pathname === "/api/cart" && req.method === "GET") {
+    return jsonResponse({ items: cart, cart_count: getCartCount(), total: 0 });
+  }
+
+  if (pathname === "/api/cart/add" && req.method === "POST") {
+    const body = await req.json() as { product_id: string; quantity: number; size: string };
+    const existing = cart.find((i) => i.product_id === body.product_id && i.size === body.size);
+    if (existing) {
+      existing.quantity += body.quantity;
+    } else {
+      cart.push({ product_id: body.product_id, quantity: body.quantity, size: body.size, key: String(nextKey++) });
+    }
+    return jsonResponse({ success: true, cart_count: getCartCount() });
+  }
+
+  if (pathname === "/api/cart/update" && req.method === "POST") {
+    const body = await req.json() as { cart_item_key: string; quantity: number };
+    const idx = cart.findIndex((i) => i.key === body.cart_item_key);
+    if (idx !== -1) {
+      if (body.quantity <= 0) {
+        cart.splice(idx, 1);
+      } else {
+        cart[idx].quantity = body.quantity;
+      }
+    }
+    return jsonResponse({ success: true, cart_count: getCartCount() });
+  }
+
+  if (pathname === "/api/cart/remove" && req.method === "POST") {
+    const body = await req.json() as { cart_item_key: string };
+    const idx = cart.findIndex((i) => i.key === body.cart_item_key);
+    if (idx !== -1) cart.splice(idx, 1);
+    return jsonResponse({ success: true, cart_count: getCartCount() });
+  }
+
+  return null;
+}
+
+// --- Server ---
+
 Bun.serve({
   port: PORT,
   async fetch(req) {
     const url = new URL(req.url);
     let pathname = url.pathname;
+
+    // Mock API routes
+    if (pathname.startsWith("/api/")) {
+      const apiRes = await handleCartAPI(req, pathname);
+      if (apiRes) return apiRes;
+      return jsonResponse({ error: "Not found" }, 404);
+    }
 
     // SSE endpoint for live-reload
     if (pathname === "/__reload") {

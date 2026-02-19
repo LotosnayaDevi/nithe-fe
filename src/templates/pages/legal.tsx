@@ -36,6 +36,7 @@ function LegalPage({ title, sections }: { title: string; sections: Section[] }) 
 function renderLegal(title: string, activePath: string, sections: Section[]): string {
   return Page({
     title: `${title} — NYTHE`,
+    bodyClass: "woocommerce page",
     children: (
       <>
         <Nav activePath={activePath} />

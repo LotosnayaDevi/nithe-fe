@@ -20,6 +20,7 @@ const SAMPLE_PRODUCTS = [
 export function renderCatalog(): string {
   return Page({
     title: "NYTHE — Catalog",
+    bodyClass: "woocommerce archive post-type-archive-product",
     children: (
       <>
         <Nav activePath="/catalog" />
@@ -29,10 +30,11 @@ export function renderCatalog(): string {
             <ProductGrid>
               {SAMPLE_PRODUCTS.map((p) => (
                 <ProductCard
+                  variant="grid"
                   code={p.code}
                   price={p.price}
                   originalPrice={p.originalPrice}
-                  href="/pages/product"
+                  href="/pages/product-info"
                 />
               ))}
             </ProductGrid>

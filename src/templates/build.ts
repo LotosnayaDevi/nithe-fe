@@ -4,6 +4,7 @@ import { join } from "path";
 import { renderHome } from "./pages/home";
 import { renderCatalog } from "./pages/catalog";
 import { renderProduct } from "./pages/product";
+import { renderProductInfo } from "./pages/product-info";
 import { renderCart } from "./pages/cart";
 import { renderCheckout } from "./pages/checkout";
 import { renderContact } from "./pages/contact";
@@ -21,6 +22,7 @@ const pages: PageDef[] = [
   { path: "index.html", render: renderHome },
   { path: "pages/catalog.html", render: renderCatalog },
   { path: "pages/product.html", render: renderProduct },
+  { path: "pages/product-info.html", render: renderProductInfo },
   { path: "pages/cart.html", render: renderCart },
   { path: "pages/checkout.html", render: renderCheckout },
   { path: "pages/contact.html", render: renderContact },

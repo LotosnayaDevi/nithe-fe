@@ -132,8 +132,14 @@ export function Nav({ activePath }: NavProps) {
           <a href="#" className="transition-opacity hover:opacity-70" aria-label="Account">
             <AccountIcon />
           </a>
-          <a href="/pages/cart" className="transition-opacity hover:opacity-70" aria-label="Cart">
+          <a href="/pages/cart" className="relative transition-opacity hover:opacity-70" aria-label="Cart">
             <CartIcon />
+            <span
+              className="cart-contents-count"
+              style="position: absolute; top: -6px; right: -8px; font-size: 0.625rem; background-color: var(--color-accent); color: var(--color-text-inverse); width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1;"
+            >
+              0
+            </span>
           </a>
           <button
             className="md:hidden transition-opacity hover:opacity-70"

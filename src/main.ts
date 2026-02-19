@@ -37,9 +37,13 @@ function initSearchOverlay(): void {
 function initQtySteppers(): void {
   document.querySelectorAll("[data-qty-decrease]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const container = btn.closest(".inline-flex");
+      const container = btn.closest("[data-qty-stepper]") || btn.closest(".inline-flex");
+      const input = container?.querySelector("input.qty") as HTMLInputElement | null;
       const display = container?.querySelector("[data-qty-value]");
-      if (display) {
+      if (input) {
+        const current = parseInt(input.value || "1", 10);
+        if (current > 1) input.value = String(current - 1);
+      } else if (display) {
         const current = parseInt(display.textContent || "1", 10);
         if (current > 1) display.textContent = String(current - 1);
       }
@@ -48,9 +52,13 @@ function initQtySteppers(): void {
 
   document.querySelectorAll("[data-qty-increase]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const container = btn.closest(".inline-flex");
+      const container = btn.closest("[data-qty-stepper]") || btn.closest(".inline-flex");
+      const input = container?.querySelector("input.qty") as HTMLInputElement | null;
       const display = container?.querySelector("[data-qty-value]");
-      if (display) {
+      if (input) {
+        const current = parseInt(input.value || "1", 10);
+        input.value = String(current + 1);
+      } else if (display) {
         const current = parseInt(display.textContent || "1", 10);
         display.textContent = String(current + 1);
       }
@@ -155,6 +163,63 @@ function initDropdowns(): void {
   });
 }
 
+/* ─── AJAX Cart helpers (WooCommerce-ready) ─── */
+
+declare const jQuery: any;
+
+function initAjaxCart(): void {
+  if (typeof jQuery === "undefined") return;
+  const $ = jQuery;
+
+  function updateCartCount(count: number): void {
+    $(".cart-contents-count").text(count);
+  }
+
+  // Add to cart
+  $(document).on("submit", "form.cart", function (e: Event) {
+    e.preventDefault();
+    const $form = $(this);
+    const productId = $form.find("input[name='add-to-cart']").val();
+    const qty = $form.find("input.qty").val() || 1;
+    const size = $form.find("input[name='attribute_size']:checked").val() ||
+                 $form.find("input[name='attribute_size']").val() || "";
+
+    $.ajax({
+      url: "/api/cart/add",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ product_id: productId, quantity: parseInt(qty as string, 10), size }),
+      success(res: { cart_count: number }) {
+        updateCartCount(res.cart_count);
+        $form.find(".single_add_to_cart_button").text("Added!");
+        setTimeout(() => {
+          $form.find(".single_add_to_cart_button").text("Add to cart");
+        }, 1500);
+      },
+    });
+  });
+
+  // Remove from cart
+  $(document).on("click", "[data-cart-remove]", function () {
+    const key = $(this).data("cart-remove");
+    $.ajax({
+      url: "/api/cart/remove",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({ cart_item_key: key }),
+      success(res: { cart_count: number }) {
+        updateCartCount(res.cart_count);
+        location.reload();
+      },
+    });
+  });
+
+  // Fetch initial cart count
+  $.getJSON("/api/cart", function (res: { cart_count: number }) {
+    updateCartCount(res.cart_count);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initRevealAnimations();
   initNavToggle();
@@ -163,4 +228,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initSizeSelectors();
   initCarousels();
   initDropdowns();
+  initAjaxCart();
 });

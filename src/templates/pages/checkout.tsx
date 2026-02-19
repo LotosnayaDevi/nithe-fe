@@ -48,6 +48,7 @@ function OrderItemRow({ item }: { item: OrderItem }) {
 export function renderCheckout(): string {
   return Page({
     title: "NYTHE — Checkout",
+    bodyClass: "woocommerce woocommerce-checkout",
     children: (
       <>
         <Nav activePath="/checkout" />
@@ -57,8 +58,8 @@ export function renderCheckout(): string {
             style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-8) var(--page-padding); gap: var(--space-12);"
           >
             {/* Form column */}
-            <div style="flex: 3;">
-              <form>
+            <div className="woocommerce" style="flex: 3;">
+              <form className="woocommerce-checkout checkout">
                 {/* Contact Information */}
                 <section style="margin-bottom: var(--space-8);">
                   <SectionTitle text="Contact Information" />

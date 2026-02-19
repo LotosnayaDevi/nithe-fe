@@ -8,14 +8,14 @@ export function ImageCarousel({ imageCount, activeIndex }: ImageCarouselProps) {
   const active = activeIndex ?? 0;
 
   return (
-    <div className="relative" data-carousel>
+    <div className="relative woocommerce-product-gallery" data-carousel>
       {/* Image area */}
       <div
-        className="overflow-hidden"
+        className="overflow-hidden woocommerce-product-gallery__wrapper"
         style="aspect-ratio: 4/5; background-color: var(--color-bg-light);"
       >
         <div
-          className="w-full h-full"
+          className="w-full h-full woocommerce-product-gallery__image"
           style="background: linear-gradient(180deg, #555 0%, #bbb 100%);"
           data-carousel-slides
         ></div>

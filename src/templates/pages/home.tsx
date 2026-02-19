@@ -19,6 +19,7 @@ const BEST_SELLERS = [
 export function renderHome(): string {
   return Page({
     title: "NYTHE — Beautifully Wrong.",
+    bodyClass: "woocommerce home page",
     children: (
       <>
         <Nav activePath="/" />
@@ -71,7 +72,7 @@ export function renderHome(): string {
             </div>
             <ProductGrid>
               {NEW_ARRIVALS.map((p) => (
-                <ProductCard {...p} />
+                <ProductCard variant="grid" {...p} href="/pages/product-info" />
               ))}
             </ProductGrid>
           </section>
@@ -136,7 +137,7 @@ export function renderHome(): string {
             </div>
             <ProductGrid>
               {BEST_SELLERS.map((p) => (
-                <ProductCard {...p} />
+                <ProductCard variant="grid" {...p} href="/pages/product-info" />
               ))}
             </ProductGrid>
           </section>

@@ -23,6 +23,7 @@ export function Base({ title, children, bodyClass, pageScript }: BaseProps) {
       <body className={bodyClass ?? ""}>
         {children}
         <SearchOverlay />
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script type="module" src="/assets/main.js"></script>
         {pageScript && <script type="module" src={`/assets/${pageScript}.js`} />}
       </body>

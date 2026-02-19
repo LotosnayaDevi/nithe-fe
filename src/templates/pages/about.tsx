@@ -5,6 +5,7 @@ import { Footer } from "../components/footer";
 export function renderAbout(): string {
   return Page({
     title: "About — NYTHE",
+    bodyClass: "woocommerce page",
     children: (
       <>
         <Nav activePath="/about" />

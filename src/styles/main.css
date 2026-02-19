@@ -100,3 +100,71 @@ body {
   font-weight: var(--font-weight-light);
   letter-spacing: var(--tracking-wide);
 }
+
+/* === WooCommerce compatibility resets === */
+.woocommerce ul.products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.woocommerce .product .price {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+}
+
+.woocommerce .product .price del {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.woocommerce .product .price ins {
+  text-decoration: none;
+}
+
+.woocommerce .quantity .qty {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  border: none;
+  background: transparent;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.woocommerce .quantity .qty::-webkit-outer-spin-button,
+.woocommerce .quantity .qty::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.woocommerce .button,
+.woocommerce button.button {
+  font-family: var(--font-mono);
+  cursor: pointer;
+}
+
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info {
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--color-border-light);
+}
+
+.woocommerce-message {
+  border-color: #4ade80;
+  background-color: #f0fdf4;
+}
+
+.woocommerce-error {
+  border-color: var(--color-accent);
+  background-color: #fef2f2;
+}
+
+/* Cart badge visibility */
+.cart-contents-count:empty,
+.cart-contents-count[data-count="0"] {
+  display: none;
+}

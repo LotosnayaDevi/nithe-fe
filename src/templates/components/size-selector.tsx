@@ -17,6 +17,7 @@ export function SizeSelector({ sizes, selected }: SizeSelectorProps) {
                 : "background-color: transparent; color: var(--color-text-primary); border: 1px solid var(--color-border-light);"
             }`}
             data-size={size}
+            data-attribute_pa_size={size.toLowerCase()}
           >
             {size}
           </button>
