@@ -26,6 +26,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* === Main content spacing before footer === */
+main {
+  padding-bottom: 60px;
+}
+
 /* === Reveal animation base === */
 [data-reveal] {
   opacity: 0;

@@ -22,114 +22,57 @@ function InstagramIcon() {
   );
 }
 
-const SHOP_LINKS = [
-  { label: "Corsets", href: "/pages/catalog?category=corsets" },
-  { label: "Dresses", href: "/pages/catalog?category=dresses" },
-  { label: "Tops", href: "/pages/catalog?category=tops" },
-  { label: "New Arrivals", href: "/pages/catalog" },
-];
-
-const INFO_LINKS = [
-  { label: "About", href: "/pages/about" },
-  { label: "Contact", href: "/pages/contact" },
-  { label: "Shipping policy", href: "/pages/shipping" },
+const POLICY_LINKS = [
   { label: "Refund policy", href: "/pages/refund" },
-];
-
-const LEGAL_LINKS = [
-  { label: "Terms of service", href: "/pages/terms" },
   { label: "Privacy policy", href: "/pages/privacy" },
+  { label: "Terms of service", href: "/pages/terms" },
+  { label: "Shipping policy", href: "/pages/shipping" },
 ];
 
 export function Footer() {
   return (
     <footer style="background-color: var(--color-bg-dark); color: var(--color-text-inverse); margin-top: auto;">
-      <div style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-16) var(--page-padding) 0;">
+      <div style="max-width: var(--max-width); margin: 0 auto; padding: var(--space-16) var(--page-padding); text-align: center;">
 
-        {/* Top section — 3 columns on md+, stacked on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-3" style="gap: var(--space-12); padding-bottom: var(--space-12);">
-
-          {/* Column 1: Brand + tagline + socials */}
-          <div>
-            <div style="font-size: var(--font-size-lg); letter-spacing: var(--tracking-widest); font-weight: 600; margin-bottom: var(--space-3);">
-              NYTHE
-            </div>
-            <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-6);">
-              Beautifully wrong.
-            </div>
-            <div className="flex items-center" style="gap: var(--space-4); color: var(--color-text-inverse);">
-              <a href="#" className="transition-opacity hover:opacity-70" aria-label="Telegram"><TelegramIcon /></a>
-              <a href="#" className="transition-opacity hover:opacity-70" aria-label="TikTok"><TikTokIcon /></a>
-              <a href="#" className="transition-opacity hover:opacity-70" aria-label="Instagram"><InstagramIcon /></a>
-            </div>
-          </div>
-
-          {/* Column 2: Shop links */}
-          <div>
-            <div style="font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); font-weight: 600; margin-bottom: var(--space-4);">
-              SHOP
-            </div>
-            <ul className="flex flex-col" style="gap: var(--space-3); list-style: none; padding: 0; margin: 0;">
-              {SHOP_LINKS.map((link) => (
-                <li>
-                  <a
-                    href={link.href}
-                    className="transition-opacity hover:opacity-70"
-                    style="font-size: var(--font-size-sm); color: var(--color-text-muted);"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Info links */}
-          <div>
-            <div style="font-size: var(--font-size-sm); letter-spacing: var(--tracking-wider); font-weight: 600; margin-bottom: var(--space-4);">
-              INFO
-            </div>
-            <ul className="flex flex-col" style="gap: var(--space-3); list-style: none; padding: 0; margin: 0;">
-              {INFO_LINKS.map((link) => (
-                <li>
-                  <a
-                    href={link.href}
-                    className="transition-opacity hover:opacity-70"
-                    style="font-size: var(--font-size-sm); color: var(--color-text-muted);"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+        {/* Social icons */}
+        <div className="flex items-center justify-center" style="gap: var(--space-6); margin-bottom: var(--space-8);">
+          <a href="#" className="transition-opacity hover:opacity-70" aria-label="Telegram"><TelegramIcon /></a>
+          <a href="#" className="transition-opacity hover:opacity-70" aria-label="TikTok"><TikTokIcon /></a>
+          <a href="#" className="transition-opacity hover:opacity-70" aria-label="Instagram"><InstagramIcon /></a>
         </div>
 
-        {/* Bottom section — border-top bar */}
-        <div
-          className="flex flex-col md:flex-row items-center justify-between"
-          style="border-top: 1px solid var(--color-border-dark); padding: var(--space-6) 0;"
-        >
-          <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
-            &copy; 2026, NYTHE
-          </div>
-          <div className="flex items-center" style="gap: var(--space-4); margin-top: var(--space-3);">
-            {LEGAL_LINKS.map((link, i) => (
-              <>
-                <a
-                  href={link.href}
-                  className="transition-opacity hover:opacity-70"
-                  style="font-size: var(--font-size-xs); color: var(--color-text-muted);"
-                >
-                  {link.label}
-                </a>
-                {i < LEGAL_LINKS.length - 1 && (
-                  <span style="color: var(--color-text-muted); font-size: var(--font-size-xs);">&middot;</span>
-                )}
-              </>
-            ))}
-          </div>
+        {/* Email */}
+        <div style="margin-bottom: var(--space-8);">
+          <a
+            href="mailto:Nythe@brand.com"
+            className="transition-opacity hover:opacity-70"
+            style="font-size: var(--font-size-sm); color: var(--color-text-inverse); text-decoration: none;"
+          >
+            Nythe@brand.com
+          </a>
+        </div>
+
+        {/* Policy links */}
+        <div className="flex items-center justify-center flex-wrap" style="gap: var(--space-3); margin-bottom: var(--space-8);">
+          {POLICY_LINKS.map((link, i) => (
+            <>
+              <a
+                href={link.href}
+                className="transition-opacity hover:opacity-70"
+                style="font-size: var(--font-size-xs); color: var(--color-text-muted); text-decoration: none;"
+              >
+                {link.label}
+              </a>
+              {i < POLICY_LINKS.length - 1 && (
+                <span style="color: var(--color-text-muted); font-size: var(--font-size-xs);">&bull;</span>
+              )}
+            </>
+          ))}
+        </div>
+
+        {/* Copyright */}
+        <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+          &copy; 2026, NYTHE
         </div>
 
       </div>
