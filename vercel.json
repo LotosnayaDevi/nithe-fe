@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/cart", "destination": "/api/cart/index" },
+    { "source": "/api/cart/:path*", "destination": "/api/cart/:path*" }
+  ]
 }
